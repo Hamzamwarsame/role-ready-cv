@@ -1,0 +1,253 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ── Inter font faces ─────────────────────────────────────────────────────── */
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/Inter-Regular.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: italic; font-weight: 400; font-display: swap; src: url('/fonts/Inter-Italic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/Inter-Medium.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/Inter-SemiBold.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/Inter-Bold.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 800; font-display: swap; src: url('/fonts/Inter-ExtraBold.ttf') format('truetype'); }
+
+@theme inline {
+  /* ── Fonts ── */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono);
+
+  /* ── Remap violet → ember so existing bg-violet-* classes use ember ── */
+  --color-violet-50:  #FFF8F1;
+  --color-violet-100: #FFEEDD;
+  --color-violet-200: #FFDAB3;
+  --color-violet-300: #FFBE7A;
+  --color-violet-400: #FF9F4A;
+  --color-violet-500: #F97316;
+  --color-violet-600: #EA580C;
+  --color-violet-700: #C2410C;
+  --color-violet-800: #9A3412;
+  --color-violet-900: #7C2D12;
+
+  /* ── Remap indigo → coral ── */
+  --color-indigo-400: #FB7185;
+  --color-indigo-500: #FB7185;
+  --color-indigo-600: #F43F5E;
+  --color-indigo-700: #E11D48;
+
+  /* ── Remap fuchsia → coral ── */
+  --color-fuchsia-500: #F43F5E;
+  --color-fuchsia-600: #E11D48;
+
+  /* ── Ember + coral as named colors ── */
+  --color-ember-50:  #FFF8F1;
+  --color-ember-100: #FFEEDD;
+  --color-ember-300: #FFBE7A;
+  --color-ember-400: #FF9F4A;
+  --color-ember-500: #F97316;
+  --color-ember-600: #EA580C;
+  --color-ember-700: #C2410C;
+
+  --color-coral-400: #FB7185;
+  --color-coral-500: #F43F5E;
+  --color-coral-600: #E11D48;
+
+  /* ── Ink (dark surfaces) ── */
+  --color-ink-950: #120A06;
+  --color-ink-900: #1A0F0A;
+  --color-ink-800: #241812;
+  --color-ink-700: #30241C;
+
+  /* ── Paper (light surfaces) ── */
+  --color-paper-wash: #FFF8F1;
+
+  /* shadcn tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+}
+
+/* ── Design tokens ────────────────────────────────────────────────────────── */
+:root {
+  --radius: 0.625rem;
+
+  /* Ember */
+  --ember-50:  #FFF8F1;
+  --ember-100: #FFEEDD;
+  --ember-200: #FFDAB3;
+  --ember-300: #FFBE7A;
+  --ember-400: #FF9F4A;
+  --ember-500: #F97316;
+  --ember-600: #EA580C;
+  --ember-700: #C2410C;
+  --ember-800: #9A3412;
+  --ember-900: #7C2D12;
+
+  /* Coral */
+  --coral-400: #FB7185;
+  --coral-500: #F43F5E;
+  --coral-600: #E11D48;
+
+  /* Back-compat: violet/indigo resolve to ember/coral */
+  --violet-50:  var(--ember-50);
+  --violet-400: var(--ember-400);
+  --violet-500: var(--ember-500);
+  --violet-600: var(--ember-600);
+  --violet-700: var(--ember-700);
+  --indigo-500: var(--coral-400);
+  --indigo-600: var(--coral-500);
+
+  /* Ink */
+  --ink-950: #120A06;
+  --ink-900: #1A0F0A;
+  --ink-800: #241812;
+  --ink-700: #30241C;
+
+  /* Paper */
+  --paper-wash: #FFF8F1;
+
+  /* Semantic */
+  --warning-600: #CA8A04;
+  --danger-600:  #DC2626;
+  --success-500: #10B981;
+
+  /* Score tri-state */
+  --score-strong:  var(--ember-600);
+  --score-partial: var(--warning-600);
+  --score-weak:    var(--danger-600);
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Gradients */
+  --grad-brand:       linear-gradient(135deg, #FFBE7A 0%, #F97316 55%, #F43F5E 100%);
+  --grad-brand-hover: linear-gradient(135deg, #FFCE96 0%, #FB8538 55%, #F55872 100%);
+  --grad-text:        linear-gradient(90deg, #F97316 0%, #FB7185 100%);
+  --grad-surface-ink: radial-gradient(ellipse at top, rgba(249,115,22,0.22) 0%, transparent 55%);
+
+  /* Glow */
+  --glow-sm: 0 0 30px rgba(249,115,22,0.35);
+  --glow-md: 0 0 40px rgba(249,115,22,0.45);
+  --glow-lg: 0 0 60px rgba(249,115,22,0.6);
+  /* Legacy aliases */
+  --glow-violet-sm: var(--glow-sm);
+  --glow-violet-md: var(--glow-md);
+  --glow-violet-lg: var(--glow-lg);
+
+  /* shadcn */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+/* ── Marquee animation ────────────────────────────────────────────────────── */
+@keyframes marquee { to { transform: translateX(-50%); } }
+.animate-marquee      { animation: marquee 35s linear infinite; }
+.animate-marquee-fast { animation: marquee 22s linear infinite; }
+
+@layer base {
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  * { @apply border-border outline-ring/50; }
+  body {
+    font-family: var(--font-sans);
+    @apply bg-background text-foreground;
+  }
+}
